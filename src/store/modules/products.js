@@ -1,3 +1,4 @@
+import axios from 'axios'
 const state = {
     stockDetails : [
         {
@@ -43,6 +44,7 @@ const state = {
             itemImage: 'public/Images/apolo-photographer-xmksM4em7a0-unsplash.jpg'
         },
     ],
+    allProducts:[]
     }
 
 const getters = {
@@ -50,9 +52,23 @@ const getters = {
 }
 const actions = {
 
+    async fetchProducts({ commit }) {
+		try {
+		  const data = await axios.get(
+			"https://back3nd.onrender.com/api/products" // base url + endpoint
+		  );
+		  commit("SET_PRODUCTS", data.data);
+		} catch (error) {
+		  alert(error);
+		  console.log(error);
+		}
+	  },
+
 }
 const mutations = {
-
+	SET_PRODUCTS (state, allProducts) {
+		state.allProducts = allProducts //this will modify the all products state
+	}
 }
 export default {
 	state,

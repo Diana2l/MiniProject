@@ -50,7 +50,8 @@
         },
         methods:{
             ...mapActions([
-                "addToCart"
+                "addToCart",
+                "fetchProducts"
             ])
 
         },
@@ -59,5 +60,8 @@
                 stock: 'stock'
             })
         },
+        created(){
+            this.fetchProducts()
+        }
     }
 </script>
